@@ -29,19 +29,15 @@ public class Window extends SurfaceView implements Runnable {
 
     long fps;
 
-    int screenSizeX, screenSizeY;
 
-    public Window(Context context, int x, int y) {
+    public Window(Context context) {
 
         super(context);
 
         surfaceHolder = getHolder();
         paint = new Paint();
 
-        gsm = new GameStateManager(x, y);
-
-        screenSizeX = x;
-        screenSizeY = y;
+        gsm = new GameStateManager();
 
         gameThread = new Thread(this);
         gameThread.start();

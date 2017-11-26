@@ -11,8 +11,8 @@ import com.enterprise.jetstorm.castledefense.entities.enemies.Enemy;
 
 public class EarthBow extends Bow {
 
-    public EarthBow(short x, short y, int screenX, int screenY) {
-        super(x, y, screenX, screenY);
+    public EarthBow(short x, short y) {
+        super(x, y);
 
         damage = 30;
         attackSpeed = 60;

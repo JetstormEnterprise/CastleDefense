@@ -15,8 +15,6 @@ public class GameStateManager {
     private GameState[] gameStates;
     private int currentState;
 
-    private int screenSizeX, screenSizeY;
-
     public static final int NUMGAMESTATES = 10;
     public static final int STARTUPSCREENSTATE = 0;
     public static final int LOADINGSCREENSTATE = 1;
@@ -28,12 +26,9 @@ public class GameStateManager {
     public static final int GEARSETUPSTATE = 7;
     public static final int CASTLEDEFENSESTATE = 8;
 
-    public GameStateManager(int screenSizeX, int screenSizeY) {
+    public GameStateManager() {
 
         gameStates = new GameState[NUMGAMESTATES];
-
-        this.screenSizeX = screenSizeX;
-        this.screenSizeY = screenSizeY;
 
 //        currentState = STARTUPSCREENSTATE;
         currentState = CASTLEDEFENSESTATE;
@@ -60,7 +55,7 @@ public class GameStateManager {
 //        else if (state == GEARSETUPSTATE)
 //            gameStates[state] = new GearSetupState(this);
         if (state == CASTLEDEFENSESTATE)
-            gameStates[state] = new CastleDefenseState(this, screenSizeX, screenSizeY);
+            gameStates[state] = new CastleDefenseState(this);
 
     }
 

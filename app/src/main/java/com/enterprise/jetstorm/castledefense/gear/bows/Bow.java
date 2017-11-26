@@ -9,6 +9,7 @@ import android.view.MotionEvent;
 
 import com.enterprise.jetstorm.castledefense.PixelShot;
 import com.enterprise.jetstorm.castledefense.entities.enemies.Enemy;
+import com.enterprise.jetstorm.castledefense.handlers.PlayerInformation;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -38,7 +39,7 @@ public class Bow {
 
     ArrayList<PixelShot> shots;
 
-    public Bow(short x, short y, int screenX, int screenY) {
+    public Bow(short x, short y) {
 
         shots = new ArrayList<>();
 
@@ -57,8 +58,8 @@ public class Bow {
         this.x = x;
         this.y = y;
 
-        this.screenX = screenX;
-        this.screenY = screenY;
+        screenX = PlayerInformation.SCREEN_SIZE_X;
+        screenY = PlayerInformation.SCREEN_SIZE_Y;
 
     }
 

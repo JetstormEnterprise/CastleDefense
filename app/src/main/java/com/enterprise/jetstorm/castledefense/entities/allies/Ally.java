@@ -35,10 +35,10 @@ public class Ally {
 
     ArrayList<PixelShot> shots = new ArrayList<>();
 
-    public Ally(int x, int y, int screenX) {
+    public Ally(int x, int y, int screenX, int screenY) {
 
-        height = 100;
-        width = 50;
+        height = (short) (screenY / 20);
+        width = (short) (screenX / 40);
 
         hitbox = new RectF();
         hitbox.left = x;

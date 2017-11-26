@@ -13,8 +13,8 @@ import java.util.ArrayList;
 
 public class LongBow extends Bow {
 
-    public LongBow(short x, short y, int screenX, int screenY) {
-        super(x, y, screenX, screenY);
+    public LongBow(short x, short y) {
+        super(x, y);
 
         damage = 2;
         attackSpeed = 10;

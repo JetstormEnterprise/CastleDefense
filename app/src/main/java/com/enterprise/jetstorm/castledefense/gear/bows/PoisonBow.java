@@ -11,8 +11,8 @@ import com.enterprise.jetstorm.castledefense.entities.enemies.Enemy;
 
 public class PoisonBow extends Bow {
 
-    public PoisonBow(short x, short y, int screenX, int screenY) {
-        super(x, y, screenX, screenY);
+    public PoisonBow(short x, short y) {
+        super(x, y);
 
         damage = 3;
         attackSpeed = 30;

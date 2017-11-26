@@ -11,8 +11,8 @@ import com.enterprise.jetstorm.castledefense.entities.enemies.Enemy;
 
 public class DarkBow extends Bow {
 
-    public DarkBow(short x, short y, int screenX, int screenY) {
-        super(x, y, screenX, screenY);
+    public DarkBow(short x, short y) {
+        super(x, y);
 
         damage = 10;
         attackSpeed = 30;

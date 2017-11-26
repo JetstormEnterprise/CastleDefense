@@ -12,12 +12,9 @@ import android.view.SurfaceHolder;
 public abstract class GameState {
 
     protected GameStateManager gsm;
-    protected int screenSizeX, screenSizeY;
 
-    public GameState(GameStateManager gsm, int screenSizeX, int screenSizeY) {
+    public GameState(GameStateManager gsm) {
         this.gsm = gsm;
-        this.screenSizeX = screenSizeX;
-        this.screenSizeY = screenSizeY;
     }
 
     public abstract void update(long fps, MotionEvent motionEvent);

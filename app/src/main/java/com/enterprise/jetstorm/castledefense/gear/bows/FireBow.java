@@ -11,8 +11,8 @@ import com.enterprise.jetstorm.castledefense.entities.enemies.Enemy;
 
 public class FireBow extends Bow {
 
-    public FireBow(short x, short y, int screenX, int screenY) {
-        super(x, y, screenX, screenY);
+    public FireBow(short x, short y) {
+        super(x, y);
 
         damage = 60;
         attackSpeed = 70;

@@ -7,6 +7,8 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.Log;
 
+import com.enterprise.jetstorm.castledefense.handlers.PlayerInformation;
+
 /**
  * Created by Makio on 11/12/2017.
  */
@@ -63,8 +65,8 @@ public class Enemy {
         maxHealth = 34;
         percentHealth = 1;
 
-        width = 50;
-        height = 100;
+        height = (short) (PlayerInformation.SCREEN_SIZE_Y / 20);
+        width = (short) (PlayerInformation.SCREEN_SIZE_X / 40);
 
         xPosition = (short) x;
         yPosition = createYPosition(y, preset);

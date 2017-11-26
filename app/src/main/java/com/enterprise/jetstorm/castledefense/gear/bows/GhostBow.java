@@ -11,8 +11,8 @@ import com.enterprise.jetstorm.castledefense.entities.enemies.Enemy;
 
 public class GhostBow extends Bow {
 
-    public GhostBow(short x, short y, int screenX, int screenY) {
-        super(x, y, screenX, screenY);
+    public GhostBow(short x, short y) {
+        super(x, y);
 
         damage = 5;
         attackSpeed = 10;

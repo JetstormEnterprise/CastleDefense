@@ -6,8 +6,8 @@ package com.enterprise.jetstorm.castledefense.entities.allies;
 
 public class Sniper extends Ally {
 
-    public Sniper(int x, int y, int screenX) {
-        super(x, y, screenX);
+    public Sniper(int x, int y, int screenX, int screenY) {
+        super(x, y, screenX, screenY);
 
         damage = 50;
         attackSpeed = 100;

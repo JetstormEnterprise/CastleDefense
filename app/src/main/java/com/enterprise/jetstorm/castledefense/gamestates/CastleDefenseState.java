@@ -10,6 +10,8 @@ import com.enterprise.jetstorm.castledefense.gear.bows.WindBow;
 import com.enterprise.jetstorm.castledefense.entities.allies.Ally;
 import com.enterprise.jetstorm.castledefense.entities.allies.Sniper;
 import com.enterprise.jetstorm.castledefense.entities.enemies.Enemy;
+import com.enterprise.jetstorm.castledefense.handlers.DataStorage;
+import com.enterprise.jetstorm.castledefense.handlers.PlayerInformation;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -34,8 +36,16 @@ public class CastleDefenseState extends GameState {
 
     boolean spawning = true;
 
-    public CastleDefenseState(GameStateManager gsm, int screenSizeX, int screenSizeY) {
-        super(gsm, screenSizeX, screenSizeY);
+    public CastleDefenseState(GameStateManager gsm) {
+        super(gsm);
+
+        DataStorage.doesFileExist();
+
+        PlayerInformation.createSpawnLocations();
+
+        DataStorage.savePlayerInformation();
+
+        DataStorage.loadPlayerInformation();
 
         random = new Random();
 
@@ -45,11 +55,15 @@ public class CastleDefenseState extends GameState {
             enemies.add(new ArrayList<Enemy>());
         }
 
-        bow = new WindBow((short) (screenSizeX / 5), (short) (screenSizeY / 2), screenSizeX, screenSizeY);
+        bow = new WindBow(PlayerInformation.PLAYER_BOW_LOCATION[0],
+                PlayerInformation.PLAYER_BOW_LOCATION[1], PlayerInformation.SCREEN_SIZE_X,
+                PlayerInformation.SCREEN_SIZE_Y);
 
-        ally = new Ally(screenSizeX / 4, screenSizeY - (screenSizeY / 4), screenSizeX);
+        ally = new Ally(PlayerInformation.ALLY_LOCATIONS[0], PlayerInformation.ALLY_LOCATIONS[1],
+                PlayerInformation.SCREEN_SIZE_X, PlayerInformation.SCREEN_SIZE_Y);
 
-        sniper = new Sniper(screenSizeX / 4, screenSizeY - (screenSizeY / 5), screenSizeX);
+        sniper = new Sniper(PlayerInformation.ALLY_LOCATIONS[2], PlayerInformation.ALLY_LOCATIONS[3],
+                PlayerInformation.SCREEN_SIZE_X, PlayerInformation.SCREEN_SIZE_Y);
 
         tempEnemyCount = 0;
 
@@ -68,49 +82,8 @@ public class CastleDefenseState extends GameState {
         if (spawning) {
             if (tempEnemyCount == 50) {
                 byte randomLane = (byte) random.nextInt(10);
-                switch (randomLane) {
-
-                    case 0:
-                        enemies.get(0).add(new Enemy(screenSizeX, (screenSizeY / 12), (byte) 1));
-                        break;
-
-                    case 1:
-                        enemies.get(1).add(new Enemy(screenSizeX, (screenSizeY / 12) * 2, (byte) 1));
-                        break;
-
-                    case 2:
-                        enemies.get(2).add(new Enemy(screenSizeX, (screenSizeY / 12) * 3, (byte) 1));
-                        break;
-
-                    case 3:
-                        enemies.get(3).add(new Enemy(screenSizeX, (screenSizeY / 12) * 4, (byte) 1));
-                        break;
-
-                    case 4:
-                        enemies.get(4).add(new Enemy(screenSizeX, (screenSizeY / 12) * 5, (byte) 1));
-                        break;
-
-                    case 5:
-                        enemies.get(5).add(new Enemy(screenSizeX, (screenSizeY / 12) * 6, (byte) 1));
-                        break;
-
-                    case 6:
-                        enemies.get(6).add(new Enemy(screenSizeX, (screenSizeY / 12) * 7, (byte) 1));
-                        break;
-
-                    case 7:
-                        enemies.get(7).add(new Enemy(screenSizeX, (screenSizeY / 12) * 8, (byte) 1));
-                        break;
-
-                    case 8:
-                        enemies.get(8).add(new Enemy(screenSizeX, (screenSizeY / 12) * 9, (byte) 1));
-                        break;
-
-                    case 9:
-                        enemies.get(9).add(new Enemy(screenSizeX, (screenSizeY / 12) * 10, (byte) 1));
-                        break;
-
-                }
+                enemies.get(randomLane).add(new Enemy(PlayerInformation.SCREEN_SIZE_X,
+                        PlayerInformation.ENEMY_SPAWNING_LOCATIONS[randomLane], (byte) 1));
 //                enemies.add(new Enemy(screenSizeX, screenSizeY, (byte) 0));
                 tempEnemyCount = 0;
             } else {
@@ -152,7 +125,8 @@ public class CastleDefenseState extends GameState {
 
             paint.setColor(Color.rgb(244, 220, 66));
 
-            canvas.drawRect(0, screenSizeY / 3, screenSizeX, screenSizeY, paint);
+            canvas.drawRect(0, PlayerInformation.SCREEN_SIZE_Y / 3,
+                    PlayerInformation.SCREEN_SIZE_X, PlayerInformation.SCREEN_SIZE_Y, paint);
 
             paint.setColor(Color.BLUE);
 
